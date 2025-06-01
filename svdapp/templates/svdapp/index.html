@@ -1,0 +1,50 @@
+{% extends 'svdapp/base.html' %}
+
+{% block content %}
+<h1 class="mb-4 text-center">Compresión y Procesamiento de Imágenes</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.image.label_tag }}
+                        {{ form.image }}
+                        {% if form.image.errors %}
+                            <div class="text-danger small">{{ form.image.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.process_type.label_tag }}
+                        {{ form.process_type }}
+                        {% if form.process_type.errors %}
+                            <div class="text-danger small">{{ form.process_type.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.k.label_tag }}
+                        {{ form.k }}
+                        {% if form.k.errors %}
+                            <div class="text-danger small">{{ form.k.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3" id="patch-size-group" style="display: none;">
+                        {{ form.patch_size.label_tag }}
+                        {{ form.patch_size }}
+                        {% if form.patch_size.errors %}
+                            <div class="text-danger small">{{ form.patch_size.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Procesar imagen</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

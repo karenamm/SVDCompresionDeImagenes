@@ -1,0 +1,296 @@
+/* 
+  svdapp/static/svdapp/css/styles.css
+
+  Estilo inspirado en iOS/macOS (colores claros, efectos de vidrio esmerilado, esquinas suaves).
+  Fuente: 'Instagram Sans' para mantener un estilo moderno, pero la paleta de colores base
+  es la de macOS (grises claros, blancos puros, transparencias).
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Instagram+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Paleta inspirada en macOS (tonos claros y neutrales) */
+  --mac-background: #F2F2F5;             /* Fondo general de la página */
+  --mac-card-background: rgba(255, 255, 255, 0.8); /* Tarjetas con ligera transparencia */
+  --mac-blur: blur(20px) saturate(180%); /* Efecto de vidrio esmerilado */
+  --mac-separator: rgba(0, 0, 0, 0.1);    /* Línea separadora muy suave */
+  --mac-label: #1D1D1F;                  /* Texto principal (casi negro) */
+  --mac-subtext: #3C3C4399;              /* Texto secundario (gris semitransparente) */
+  --mac-primary: #007AFF;                /* Azul de sistema macOS/iOS */
+  --mac-accent: #FF9500;                 /* Naranja de acento */
+  --mac-secondary: #34C759;              /* Verde de acento */
+  --mac-gray1: #FFFFFF;                  /* Blanco puro (para fondos de tarjetas) */
+  --mac-gray2: #E5E5EA;                  /* Gris claro */
+  --mac-gray3: #D1D1D6;                  /* Gris medio */
+  --mac-corner-small: 12px;              /* Radio de esquina estándar */
+  --mac-corner-large: 16px;              /* Radio más grande para botones y avatares */
+}
+
+/* Reset / Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Instagram Sans', -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", sans-serif;
+  background-color: var(--mac-background);
+  color: var(--mac-label);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+/* Contenedor principal centrado y con un padding */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* NAVBAR / BARRA DE NAVEGACIÓN (estilo iOS/macOS) */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--mac-card-background);
+  backdrop-filter: var(--mac-blur);
+  border-bottom: 0.5px solid var(--mac-separator);
+  padding: 12px 20px;
+  border-radius: 0 0 var(--mac-corner-small) var(--mac-corner-small);
+}
+
+.navbar .brand {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--mac-label);
+}
+
+.navbar .nav-links {
+  display: flex;
+  gap: 16px;
+}
+
+.navbar .nav-link {
+  color: var(--mac-primary);
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: var(--mac-corner-small);
+  transition: background-color 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+  background-color: var(--mac-gray2);
+}
+
+.navbar .nav-link.active {
+  font-weight: 600;
+  background-color: var(--mac-gray2);
+}
+
+/* CARD (TARJETA) */
+.card {
+  background-color: var(--mac-card-background);
+  border-radius: var(--mac-corner-small);
+  margin: 20px 0;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  backdrop-filter: var(--mac-blur);
+  border: 0.5px solid var(--mac-separator);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.card-header {
+  padding: 16px 20px;
+  background-color: var(--mac-card-background);
+  border-bottom: 0.5px solid var(--mac-separator);
+}
+
+.card-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--mac-label);
+}
+
+.card-body {
+  padding: 16px 20px;
+}
+
+/* IMAGEN MINIATURA */
+.img-thumbnail {
+  width: 100%;
+  height: auto;
+  border-radius: var(--mac-corner-small);
+  object-fit: cover;
+  background-color: var(--mac-gray2);
+  transition: transform 0.2s ease;
+  margin-bottom: 16px;
+}
+
+.img-thumbnail:hover {
+  transform: scale(1.02);
+}
+
+/* TABLA DE RESULTADOS */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px; /* Separación vertical suave entre filas */
+}
+
+.table th, .table td {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 15px;
+}
+
+.table th {
+  color: var(--mac-subtext);
+  font-weight: 500;
+}
+
+.table td {
+  background-color: var(--mac-card-background);
+  border-radius: var(--mac-corner-small);
+  color: var(--mac-label);
+}
+
+/* FORMULARIO (iOS-style) */
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--mac-subtext);
+  margin-bottom: 6px;
+}
+
+input[type="file"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  border: none;
+  background-color: var(--mac-gray1);
+  border-radius: var(--mac-corner-small);
+  margin-bottom: 12px;
+  transition: background-color 0.2s ease;
+  font-family: 'Instagram Sans', -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", sans-serif;
+}
+
+input[type="file"] {
+  padding: 10px; /* Diseño más compacto para file input */
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  background-color: var(--mac-gray2);
+  outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* BOTONES (iOS-style) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: var(--mac-corner-large);
+  border: none;
+  transition: all 0.2s ease;
+  font-family: 'Instagram Sans', -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", sans-serif;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--mac-primary), var(--mac-secondary));
+  color: white;
+}
+
+.btn-primary:hover {
+  filter: brightness(0.9);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: var(--mac-gray3);
+  color: var(--mac-label);
+}
+
+.btn-secondary:hover {
+  background-color: var(--mac-gray2);
+}
+
+/* BOTÓN DE REGRESO */
+.back-button {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: var(--mac-gray3);
+  color: var(--mac-label);
+  text-decoration: none;
+  border-radius: var(--mac-corner-small);
+  transition: background-color 0.2s ease;
+  font-size: 15px;
+}
+
+.back-button:hover {
+  background-color: var(--mac-gray2);
+}
+
+/* ENCABEZADOS */
+h1, h2, h3, h4 {
+  color: var(--mac-label);
+  margin-bottom: 12px;
+}
+
+/* LÍNEAS DIVISORIAS */
+.separator {
+  height: 0.5px;
+  background-color: var(--mac-separator);
+  margin: 20px 0;
+}
+
+/* RESPONSIVE: Ajustes cuando la pantalla es pequeña */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar .nav-links {
+    margin-top: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .card {
+    margin: 16px 0;
+  }
+}

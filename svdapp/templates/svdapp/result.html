@@ -1,0 +1,86 @@
+<!-- svdapp/templates/svdapp/result.html -->
+{% extends 'svdapp/base.html' %}
+
+{% block content %}
+<div class="program-container">
+
+    <!-- Título principal -->
+    <div class="program-header">
+        <h1>Resultado del Procesamiento</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Imagen Original -->
+            <div class="card mb-3">
+                <div class="card-header bg-secondary text-white">
+                    <strong>Imagen Original</strong>
+                </div>
+                <div class="card-body text-center">
+                    <img src="{{ original_url }}" class="img-fluid img-thumbnail" alt="Imagen original">
+                </div>
+            </div>
+
+            <!-- Imagen con Ruido (si aplica) -->
+            {% if outputs.noisy %}
+            <div class="card mb-3">
+                <div class="card-header bg-warning text-dark">
+                    <strong>Imagen con Ruido</strong>
+                </div>
+                <div class="card-body text-center">
+                    <img src="{{ outputs.noisy }}" class="img-fluid img-thumbnail" alt="Imagen con ruido">
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="col-md-8">
+            <!-- Imagen Procesada -->
+            <div class="card mb-3">
+                <div class="card-header bg-success text-white">
+                    <strong>Imagen Procesada</strong>
+                </div>
+                <div class="card-body text-center">
+                    <img src="{{ outputs.processed }}" class="img-fluid img-thumbnail" alt="Imagen procesada">
+                </div>
+            </div>
+
+            <!-- Gráfica de Valores Singulares / Varianzas (si existe) -->
+            {% if plot_url %}
+            <div class="card mb-3">
+                <div class="card-header bg-info text-white">
+                    <strong>Gráfica de Valores Singulares / Varianzas</strong>
+                </div>
+                <div class="card-body text-center">
+                    <img src="{{ plot_url }}" class="img-fluid" alt="Gráfica de valores singulares">
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Métricas de Evaluación -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <strong>Métricas de Evaluación</strong>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tbody>
+                            {% for key, value in metrics.items %}
+                            <tr>
+                                <th>{{ key }}</th>
+                                <td>{{ value }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Botón para procesar otra imagen -->
+            <div class="mt-3 text-end">
+                <a href="{% url 'svdapp:index' %}" class="back-button">← Procesar otra imagen</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

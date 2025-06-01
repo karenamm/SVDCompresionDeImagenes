@@ -1,0 +1,7 @@
+Django>=3.2
+numpy
+scipy
+scikit-image
+scikit-learn
+Pillow
+matplotlib
